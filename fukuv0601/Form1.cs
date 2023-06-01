@@ -4,12 +4,11 @@ namespace fukuv0601
     {
         int vx = -10;
         int vy = -10;
-        int zettai = -10;
         string chr = "BAKA";
         public Form1()
         {
             InitializeComponent();
-            MessageBox.Show($"{label1.Right}");
+            //MessageBox.Show($"{label1.Right}");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -30,20 +29,27 @@ namespace fukuv0601
             label1.Top += vy;
             if (label1.Left < 0)
             {
-                vx = 10;
+                vx = Math.Abs(vx + (vx / 10));
+            }
+             else if (label1.Right > ClientSize.Width)
+            {
+                vx = -Math.Abs(vx + (vx / 10));
+                //vx =-10;
             }
             if (label1.Top < 0)
             {
-                vy = 10;
-                zettai++;
+                vy = Math.Abs(vy + (vy / 10));
+                //vy = 10;
             }
             if (label1.Right > 800)
             {
-                vx = -10;
+                vx = -Math.Abs(vx + (vx / 10));
+                //vx = -10;
             }
-            if (label1.Bottom >450)
+            if (label1.Bottom > ClientSize.Height)
             {
-                vy = -10;
+                vy = -Math.Abs(vy + (vy / 10));
+                //vy = -10;
             }
             string t = label1.Text;
             label1.Text = chr;
@@ -52,9 +58,8 @@ namespace fukuv0601
 
         private void label1_Click(object sender, EventArgs e)
         {
-            //timer1.Stop();
+            timer1.Stop();
             label1.Text = "KATO MASAHIRO";
-            zettai=+10;
         }
     }
 }
